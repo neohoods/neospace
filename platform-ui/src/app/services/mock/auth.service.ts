@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, firstValueFrom, Observable, of } from 'rxjs';
 import { AuthApiService } from '../../api-client';
 import { UIUser } from '../../models/UIUser';
-import { MockUsersService } from '../../portal/hub/services/mock/users.service';
 import { AuthService, UserInfo } from '../auth.service';
 
 @Injectable({
@@ -41,9 +40,26 @@ export class MockAuthService implements AuthService {
   constructor(
     private router: Router,
     private authApiService: AuthApiService,
-    private usersService: MockUsersService,
   ) {
-    this.userInfo.user = this.usersService.getUserByUsername('me');
+    this.userInfo.user = {
+      "id": "11",
+      "username": "me",
+      "firstName": "Me",
+      "lastName": "Me",
+      "email": "me@example.com",
+      "avatarUrl": "https://mdbcdn.b-cdn.net/img/new/avatars/2.webp",
+      "isEmailVerified": true,
+      "disabled": false,
+      "preferredLanguage": "en",
+      "flatNumber": "808",
+      "streetAddress": "808 Birch St",
+      "city": "Somewhere",
+      "postalCode": "12345",
+      "country": "USA",
+      "borrowedItems": 0,
+      "returnedLate": 0,
+      "successRate": 0
+    };
   }
 
   async initializeSession(): Promise<void> {
@@ -52,7 +68,7 @@ export class MockAuthService implements AuthService {
   }
 
   getUserProfile(): Observable<UIUser> {
-    return of(this.usersService.getUserByUsername('me'));
+    return of(this.userInfo.user);
   }
 
   verifyEmail(token: string): Observable<boolean> {
@@ -76,7 +92,7 @@ export class MockAuthService implements AuthService {
           lastName: 'admin',
           username: 'admin',
           email: 'admin@example.com',
-          user: this.usersService.getUserByUsername(username),
+          user: this.userInfo.user,
         }
         observer.next(true);
         observer.complete();
@@ -89,7 +105,7 @@ export class MockAuthService implements AuthService {
           lastName: 'demo',
           username: 'demo',
           email: 'me@example.com',
-          user: this.usersService.getUserByUsername('me'),
+          user: this.userInfo.user,
         }
         observer.next(true);
         observer.complete();
@@ -101,7 +117,7 @@ export class MockAuthService implements AuthService {
           lastName: 'dupont',
           username: 'alice',
           email: 'alice@example.com',
-          user: this.usersService.getUserByUsername(username),
+          user: this.userInfo.user,
         }
         observer.next(true);
         observer.complete();
@@ -113,7 +129,7 @@ export class MockAuthService implements AuthService {
           lastName: 'durand',
           username: 'bob',
           email: 'bob@example.com',
-          user: this.usersService.getUserByUsername(username),
+          user: this.userInfo.user,
         }
         observer.next(true);
         observer.complete();
