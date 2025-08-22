@@ -16,6 +16,8 @@ jobs:
       - name: Prepare release
         id: vars
         run: |
+          # Install libxml2-utils
+          sudo apt-get update
           sudo apt-get install libxml2-utils
           cd platform-api
           export VERSION=`xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml | sed -e  "s/-SNAPSHOT$//"`

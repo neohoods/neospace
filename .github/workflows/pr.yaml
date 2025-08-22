@@ -21,6 +21,7 @@ jobs:
       - name: Prepare release
         id: vars
         run: |
+          sudo apt-get update
           sudo apt-get install -y libxml2-utils
           cd platform-api
           export VERSION=`xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml | sed -e  "s/-SNAPSHOT$//"`
@@ -40,7 +41,7 @@ jobs:
         uses: qcastel/github-actions-maven-cmd@master
         with:
           maven-args: "clean verify -Ddockerfile.skip -DdockerCompose.skip -Djib.skip"
-      
+
       # Step: Verify Angular project compiles
       - name: Verify Angular project compiles
         run: |
