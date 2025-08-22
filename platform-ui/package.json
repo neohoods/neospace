@@ -40,7 +40,7 @@
     "@taiga-ui/kit": "^4.15.0",
     "@taiga-ui/layout": "^4.21.0",
     "angular-calendar": "^0.31.1",
-    "axios": "^1.7.9",
+    "axios": "^1.11.0",
     "date-fns": "^4.1.0",
     "fs": "^0.0.1-security",
     "leaflet": "^1.9.4",
