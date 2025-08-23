@@ -104,10 +104,10 @@ jobs:
 
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-          repository: git@github.com:neohoods/neohoods-saas.git
-          file-path: space-dev/values.yaml
+          repository: git@github.com:neohoods/neohoods-helm.git
+          file-path: charts/neohoods-space/values.yaml
 
-          yaml-paths: "neohoods-space-chart.backend.image.tag,neohoods-space-chart.frontend.image.tag"
+          yaml-paths: "backend.image.tag,frontend.image.tag"
 
           tag: ${{ env.app-version }}
 
