@@ -104,7 +104,7 @@ jobs:
 
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-          repository: git@github.com:neohoods/neohoods-helm.git
+          repository: git@github.com:neohoods/neospace-helm.git
           file-path: charts/neohoods-space/values.yaml
 
           yaml-paths: "backend.image.tag,frontend.image.tag"
